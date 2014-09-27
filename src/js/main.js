@@ -14,7 +14,11 @@ function toggleOscillator() {
 		osc.stop(now);
 	} else {
 		osc.start(now);
+		console.log(osc.frequency.value, now);
+
 	}
 	oscPlaying = !oscPlaying;
 }
 
+
+window.osc = osc;
