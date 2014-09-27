@@ -1,30 +1,34 @@
 function ImmortalOscillator() {
 
-	var node = null;
-	var nodeNeedsNulling = false;
+	var oscNode = null;
+	var oscNodeNeedsNulling = false;
 	var context = this.context;
 
-	this.__ensureNodeIsLive = function() {
-		if(nodeNeedsNulling || node === null) {
-			node = context.createOscillator();
-			node.connect(this);
+	this.__ensureOscNodeIsLive = function() {
+		if(oscNodeNeedsNulling || oscNode === null) {
+			oscNode = context.createOscillator();
+			oscNode.connect(this);
 		}
-		nodeNeedsNulling = false;
+		oscNodeNeedsNulling = false;
 	};
 
 	this.start = function(when) {
-		this.__ensureNodeIsLive();
-		node.start(when);
+		this.__ensureOscNodeIsLive();
+		oscNode.start(when);
 	};
 
 	this.stop = function(when) {
-		if(node === null) {
+		if(oscNode === null) {
 			return;
 		}
-		nodeNeedsNulling = true;
-		node.stop(when);
+		oscNodeNeedsNulling = true;
+		oscNode.stop(when);
 	};
 
+	this.cancelScheduledEvents = function(when) {
+		// TODO
+		// 
+	};
 }
 
 function Oscillator(audioContext) {
