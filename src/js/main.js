@@ -15,12 +15,13 @@ function toggleOscillator() {
 		osc.stop(now);
 	} else {
 		osc.start(now);
-		//console.log(osc.frequency.value, now);
-
-		//osc.frequency.setValueAtTime(220 + 220 * Math.random(), now);
 	}
 	oscPlaying = !oscPlaying;
 }
 
+setInterval(function() {
 
-//window.osc = osc; // TMP XXX KILLTHIS
+	osc.frequency.setValueAtTime(220 + 880 * Math.random(), ac.currentTime);
+
+}, 100);
+
