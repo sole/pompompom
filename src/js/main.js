@@ -1,5 +1,6 @@
 var ac = new AudioContext();
-var p3 = require('./pompompom/pompompom')(ac);
+var pompompom = require('./pompompom/pompompom');
+var p3 = new pompompom(ac);
 
 var osc = p3.createOscillator();
 var oscPlaying = false;
@@ -14,11 +15,12 @@ function toggleOscillator() {
 		osc.stop(now);
 	} else {
 		osc.start(now);
-		console.log(osc.frequency.value, now);
+		//console.log(osc.frequency.value, now);
 
+		//osc.frequency.setValueAtTime(220 + 220 * Math.random(), now);
 	}
 	oscPlaying = !oscPlaying;
 }
 
 
-window.osc = osc;
+//window.osc = osc; // TMP XXX KILLTHIS

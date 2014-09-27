@@ -3,10 +3,8 @@ var Oscillator = require('./Oscillator');
 function pompompom(audioContext) {
 
 	this.createOscillator = function() {
-		return Oscillator(audioContext);
+		return (new Oscillator(audioContext)).getNode();
 	};
-
-	return this;
 
 }
 
