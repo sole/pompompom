@@ -53,6 +53,13 @@ function ImmortalOscillator(gain) {
 		oscNode.stop(when);
 	};
 
+	gain.cancelScheduledEvents = function(when) {
+		console.log('TODO cancelScheduledEvents', when);
+
+		// automated params:
+		gain.frequency.cancelScheduledEvents(when);
+	};
+
 }
 
 function Oscillator(audioContext) {
