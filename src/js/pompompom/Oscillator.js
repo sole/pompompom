@@ -13,10 +13,11 @@ function ImmortalOscillator(gain) {
 		frequencyInlet = context.createGain();
 	
 		var frequencyInputSource = context.createBufferSource();
-		var frequencyBuffer = context.createBuffer(1, 1, context.sampleRate);
+		var frequencyBuffer = context.createBuffer(2, 1, context.sampleRate);
 
 		// Sole's invention to get some input signal into the GainNode for modulating frequency which apparently seems to be magical and works. WOW.
 		frequencyBuffer.getChannelData(0)[0] = 1.0;
+		frequencyBuffer.getChannelData(1)[0] = 1.0;
 		frequencyInputSource.buffer = frequencyBuffer;
 		frequencyInputSource.loop = true;
 		frequencyInputSource.connect(frequencyInlet);
@@ -59,16 +60,10 @@ function Oscillator(audioContext) {
 	console.log('oscillator and now', this);
 
 	var gain = audioContext.createGain();
-
-	//ImmortalOscillator.call(gain);
 	
 	ImmortalOscillator(gain);
-
-	this.getNode = function() {
-		return gain;
-	};
 	
-	//return gain;
+	return gain;
 
 }
 
