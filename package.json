@@ -31,6 +31,7 @@
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^0.4.0",
     "gulp-uglify": "^0.3.1",
+    "openmusic-oscilloscope": "^1.0.0",
     "yargs": "^1.3.1"
   }
 }

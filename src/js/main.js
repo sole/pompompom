@@ -1,10 +1,21 @@
+// components
+require('openmusic-oscilloscope').register('openmusic-oscilloscope');
+
+//
 var ac = new AudioContext();
 var pompompom = require('./pompompom/pompompom');
 var p3 = new pompompom(ac);
 
 var osc = p3.createOscillator();
 var oscPlaying = false;
-osc.connect(ac.destination);
+
+var analyser = ac.createAnalyser();
+var oscilloscope = document.querySelector('openmusic-oscilloscope');
+oscilloscope.attachTo(analyser);
+
+osc.connect(analyser);
+analyser.connect(ac.destination);
+
 var oscBtn = document.getElementById('oscillate');
 oscBtn.addEventListener('click', toggleOscillator);
 
